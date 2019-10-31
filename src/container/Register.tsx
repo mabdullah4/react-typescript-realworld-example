@@ -1,12 +1,15 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ErrorList from "../components/ErrorList";
+import useForm from "../hook/useForm";
+import registerValidator from "../validator/register";
+import IRegisterForm from "../model/IRegisterForm";
 
 export interface RegisterProps {}
 
 const Register: React.FunctionComponent<RegisterProps> = () => {
-  const [errors] = React.useState<string[]>([]);
-
+  const {errors,handleBlur,handleChange,handleSubmit,isSubmitting} = useForm<IRegisterForm>({email:"",password:"",username:""},registerValidator)
+  
   return (
     <div className="auth-page">
       <div className="container page">
@@ -16,25 +19,25 @@ const Register: React.FunctionComponent<RegisterProps> = () => {
             <p className="text-xs-center">
               <Link to="/login">Have an account?</Link>
             </p>
-
-            {() => {
-              if (errors) {
-                return <ErrorList errors={errors} />;
-              }
-            }}
-
-            <form>
+            <ErrorList errors={errors} />
+            <form onSubmit={handleSubmit}>
               <fieldset className="form-group">
                 <input
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="form-control form-control-lg"
                   type="text"
+                  name="username"
                   placeholder="Your Name"
                 />
               </fieldset>
               <fieldset className="form-group">
                 <input
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                   className="form-control form-control-lg"
                   type="text"
+                  name="email"
                   placeholder="Email"
                 />
               </fieldset>
@@ -42,10 +45,17 @@ const Register: React.FunctionComponent<RegisterProps> = () => {
                 <input
                   className="form-control form-control-lg"
                   type="password"
+                  name="password"
                   placeholder="Password"
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
               </fieldset>
-              <button className="btn btn-lg btn-primary pull-xs-right">
+              <button
+                disabled={!isSubmitting}
+                type="submit"
+                className="btn btn-lg btn-primary pull-xs-right"
+              >
                 Sign up
               </button>
             </form>

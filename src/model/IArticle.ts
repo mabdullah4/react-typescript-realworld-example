@@ -1,4 +1,4 @@
-import Author from "./Author";
+import Author from "./IAuthor";
 
 export default interface Article {
   slug: string;

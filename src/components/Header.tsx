@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import User from "../model/User";
+import User from "../model/IUser";
 import { connect } from "react-redux";
 
 export interface HeaderProps {

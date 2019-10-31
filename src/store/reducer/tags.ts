@@ -1,5 +1,5 @@
-import Tags from "../../model/Tag";
-import Action from "../../model/Action";
+import Tags from "../../model/ITag";
+import Action from "../../model/IAction";
 
 const initial: Tags = {
   tags: ["reactjs", "angularjs"]
