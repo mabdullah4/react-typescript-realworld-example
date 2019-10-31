@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import ArticlePreview from "./ArticlePreview";
 import Article from "../../model/Article";
+import { useParams } from "react-router";
 
 export interface ArticleListProps {
   articles: Article[];
@@ -11,6 +12,9 @@ export interface ArticleListProps {
 const ArticleList: React.FunctionComponent<ArticleListProps> = ({
   articles
 }) => {
+  const params = useParams();
+  console.log(params);
+
   return (
     <>
       {articles.map((article, i) => (

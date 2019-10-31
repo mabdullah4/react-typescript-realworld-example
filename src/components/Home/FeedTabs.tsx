@@ -1,6 +1,7 @@
 import * as React from "react";
 import { connect } from "react-redux";
 import User from "../../model/User";
+import { Link } from "react-router-dom";
 
 export interface FeedTabsProps {
   user: User;
@@ -14,18 +15,18 @@ const FeedTabs: React.FunctionComponent<FeedTabsProps> = ({ user }) => {
           if (user.token) {
             return (
               <li className="nav-item">
-                <a className="nav-link disabled" href="">
+                <Link className="nav-link disabled" to="">
                   Your Feed
-                </a>
+                </Link>
               </li>
             );
           }
           return "";
         })()}
         <li className="nav-item">
-          <a className="nav-link active" href="">
+          <Link className="nav-link active" to="">
             Global Feed
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

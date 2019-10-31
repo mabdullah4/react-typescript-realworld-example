@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ErrorList from "../ErrorList";
+import ErrorList from "../components/ErrorList";
 
 export interface RegisterProps {}
 
 const Register: React.FunctionComponent<RegisterProps> = () => {
-  const [errors, setErrors] = React.useState<string[]>([]);
+  const [errors] = React.useState<string[]>([]);
 
   return (
     <div className="auth-page">

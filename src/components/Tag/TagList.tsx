@@ -8,12 +8,10 @@ export interface TagListProps {
 }
 
 const TagList: React.SFC<TagListProps> = ({ tags }) => {
-  console.log(tags);
-
   return (
     <div className="tag-list">
-      {tags.tags.map(tag => (
-        <Tag tag={tag} />
+      {tags.tags.map((tag, i) => (
+        <Tag key={i} tag={tag} />
       ))}
     </div>
   );

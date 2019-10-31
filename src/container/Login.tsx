@@ -1,11 +1,11 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import ErrorList from "../ErrorList";
+import ErrorList from "../components/ErrorList";
 
 export interface LoginProps {}
 
 const Login: React.FunctionComponent<LoginProps> = () => {
-  const [errors, setErrors] = React.useState<string[]>([]);
+  const [errors] = React.useState<string[]>([]);
 
   return (
     <>

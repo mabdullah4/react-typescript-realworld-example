@@ -7,7 +7,7 @@ export interface HeaderProps {
   user: User;
 }
 
-function LoggedInMenu() {
+function LoggedInMenu(user: User) {
   return (
     <>
       <li className="nav-item">
@@ -18,6 +18,11 @@ function LoggedInMenu() {
       <li className="nav-item">
         <Link className="nav-link" to="/setting">
           <i className="ion-gear-a"></i>&nbsp;Settings
+        </Link>
+      </li>
+      <li className="nav-item">
+        <Link className="nav-link" to={`/profile/@${user.username}`}>
+          <i className="ion-person"></i>&nbsp;&nbsp;&nbsp;{user.username}
         </Link>
       </li>
     </>
@@ -56,7 +61,7 @@ const Header: React.FunctionComponent<HeaderProps> = ({ user }) => {
           </li>
           {(() => {
             if (user.token) {
-              return <LoggedInMenu />;
+              return LoggedInMenu(user);
             }
             return <LoggedOutMenu />;
           })()}
