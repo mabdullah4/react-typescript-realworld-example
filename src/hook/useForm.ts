@@ -9,7 +9,7 @@ const useForm = <T>(initialValues: T, validator: Function) => {
     const validationErrors = validator(values);
     setErrors(validationErrors);
 
-    if (!validationErrors || Object.keys(validationErrors).length !== 0) {
+    if (Object.keys(validationErrors).length !== 0) {
       setSubmitting(false);
     } else {
       setSubmitting(true);

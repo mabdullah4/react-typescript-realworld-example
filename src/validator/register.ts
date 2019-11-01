@@ -1,19 +1,19 @@
 import IRegisterForm from "../model/IRegisterForm";
+import emailValidator from "./helper/emailValidator";
+import minLengthValidator from "./helper/minLengthValidator";
 
 const registerValidator = (values: IRegisterForm) => {
   let errors: IRegisterForm = { email: "", password: "", username: "" };
 
-  if (values.username.length < 8) {
-    errors.username = "Invalid username";
-  }
-
-  if (!values.email.match(/.+\@.+\..+/)) {
-    errors.email = "Invalid Email Address";
-  }
-
-  if (values.password.length < 8) {
-    errors.password = "Password should be minimum 8 characters";
-  }
+  errors.username = minLengthValidator(
+    values.username,
+    "User Name must have 8 character atleast"
+  );
+  errors.email = emailValidator(values.email);
+  errors.password = minLengthValidator(
+    values.password,
+    "Password must have 8 character atleast"
+  );
 
   return errors;
 };

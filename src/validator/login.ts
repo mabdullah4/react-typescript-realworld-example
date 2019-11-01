@@ -1,17 +1,14 @@
 import ILoginForm from "../model/ILoginForm";
-
+import emailValidator from "./helper/emailValidator";
+import minLengthValidator from "./helper/minLengthValidator";
 
 const loginValidator = (values: ILoginForm) => {
-  const errors: ILoginForm = { email: "", password: "" };
+    const errors: ILoginForm = { email: "", password: "" };
 
-  if (!values.email.match(/.+\@.+\..+/)) {
-    errors.email = "Invalid Email Address";
-  }
-  if (values.password.length < 8) {
-    errors.password = "Password should be minimum 8 characters";
-  }
+    errors.email = emailValidator(values.email);
+    errors.password = minLengthValidator(values.password, "Password must have minimum 8 characters");
 
-  return errors;
+    return errors;
 };
 
 export default loginValidator;

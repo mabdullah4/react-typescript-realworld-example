@@ -4,12 +4,22 @@ import ErrorList from "../components/ErrorList";
 import useForm from "../hook/useForm";
 import registerValidator from "../validator/register";
 import IRegisterForm from "../model/IRegisterForm";
+import FormInput from "../components/other/FormInput";
 
 export interface RegisterProps {}
 
 const Register: React.FunctionComponent<RegisterProps> = () => {
-  const {errors,handleBlur,handleChange,handleSubmit,isSubmitting} = useForm<IRegisterForm>({email:"",password:"",username:""},registerValidator)
-  
+  const {
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting
+  } = useForm<IRegisterForm>(
+    { email: "", password: "", username: "" },
+    registerValidator
+  );
+
   return (
     <div className="auth-page">
       <div className="container page">
@@ -21,36 +31,37 @@ const Register: React.FunctionComponent<RegisterProps> = () => {
             </p>
             <ErrorList errors={errors} />
             <form onSubmit={handleSubmit}>
-              <fieldset className="form-group">
-                <input
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className="form-control form-control-lg"
-                  type="text"
-                  name="username"
-                  placeholder="Your Name"
-                />
-              </fieldset>
-              <fieldset className="form-group">
-                <input
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                  className="form-control form-control-lg"
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                />
-              </fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </fieldset>
+              <FormInput
+                name="username"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Your Name"
+                classes="form-control-lg"
+              />
+              <FormInput
+                type="password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Password"
+                classes="form-control-lg"
+              />
+              <FormInput
+                name="email"
+                type="email"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Email"
+                classes="form-control-lg"
+              />
+              <FormInput
+                type="password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Password"
+                classes="form-control-lg"
+              />
               <button
                 disabled={!isSubmitting}
                 type="submit"

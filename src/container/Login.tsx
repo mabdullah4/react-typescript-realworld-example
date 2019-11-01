@@ -4,11 +4,18 @@ import ErrorList from "../components/ErrorList";
 import useForm from "../hook/useForm";
 import loginValidator from "../validator/login";
 import ILoginForm from "../model/ILoginForm";
+import FormInput from "../components/other/FormInput";
 
 export interface LoginProps {}
 
 const Login: React.FunctionComponent<LoginProps> = () => {
-  const {errors,handleBlur,handleSubmit,handleChange,isSubmitting } = useForm<ILoginForm>({email:'',password:''},loginValidator)
+  const {
+    errors,
+    handleBlur,
+    handleSubmit,
+    handleChange,
+    isSubmitting
+  } = useForm<ILoginForm>({ email: "", password: "" }, loginValidator);
   return (
     <div className="auth-page">
       <div className="container page">
@@ -20,26 +27,22 @@ const Login: React.FunctionComponent<LoginProps> = () => {
             </p>
             <ErrorList errors={errors} />
             <form onSubmit={handleSubmit}>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="text"
-                  name="email"
-                  placeholder="Email"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="password"
-                  name="password"
-                  placeholder="Password"
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              </fieldset>
+              <FormInput
+                name="email"
+                type="email"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Email"
+                classes="form-control-lg"
+              />
+              <FormInput
+                type="password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Password"
+                classes="form-control-lg"
+              />
               <button
                 disabled={!isSubmitting}
                 type="submit"
