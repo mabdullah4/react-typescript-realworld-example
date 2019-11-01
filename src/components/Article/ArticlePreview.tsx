@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import Article from "./../../model/Article";
+import Article from "../../model/IArticle";
 import { Link } from "react-router-dom";
 
 export interface ArticlePreviewProps {

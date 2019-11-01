@@ -1,5 +1,5 @@
-import Action from "../../model/Action";
-import Article from "../../model/Article";
+import Action from "../../model/IAction";
+import Article from "../../model/IArticle";
 
 const intial: Article[] = [
   {

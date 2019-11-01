@@ -1,7 +1,7 @@
 import * as React from "react";
 import Tag from "./Tag";
 import { connect } from "react-redux";
-import Tags from "../../model/Tag";
+import Tags from "../../model/ITag";
 
 export interface TagListProps {
   tags: Tags;

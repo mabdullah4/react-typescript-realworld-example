@@ -2,7 +2,7 @@ import * as React from "react";
 import { connect } from "react-redux";
 
 import ArticlePreview from "./ArticlePreview";
-import Article from "../../model/Article";
+import Article from "../../model/IArticle";
 import { useParams } from "react-router";
 
 export interface ArticleListProps {

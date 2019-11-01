@@ -1,62 +1,82 @@
 import * as React from "react";
+import FormInput from "../components/other/FormInput";
+import useForm from "../hook/useForm";
+import User from "../model/IUser";
+import { connect } from "react-redux";
+import userValidator from "../validator/user";
+import FormTextArea from "../components/other/FormTextArea";
+import ErrorList from "../components/ErrorList";
 
-export interface SettingProps {}
+export interface SettingProps {
+    user: User;
+}
 
-const Setting: React.SFC<SettingProps> = () => {
-  return (
-    <div className="settings-page">
-      <div className="container page">
-        <div className="row">
-          <div className="col-md-6 offset-md-3 col-xs-12">
-            <h1 className="text-xs-center">Your Settings</h1>
+const Setting: React.SFC<SettingProps> = ({ user }) => {
+    const { errors, handleSubmit, handleBlur, handleChange, isSubmitting } = useForm<User>(user, userValidator);
 
-            <form>
-              <fieldset>
-                <fieldset className="form-group">
-                  <input
-                    className="form-control"
-                    type="text"
-                    placeholder="URL of profile picture"
-                  />
-                </fieldset>
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="text"
-                    placeholder="Your Name"
-                  />
-                </fieldset>
-                <fieldset className="form-group">
-                  <textarea
-                    className="form-control form-control-lg"
-                    rows={8}
-                    placeholder="Short bio about you"
-                  />
-                </fieldset>
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="text"
-                    placeholder="Email"
-                  />
-                </fieldset>
-                <fieldset className="form-group">
-                  <input
-                    className="form-control form-control-lg"
-                    type="password"
-                    placeholder="Password"
-                  />
-                </fieldset>
-                <button className="btn btn-lg btn-primary pull-xs-right">
-                  Update Settings
-                </button>
-              </fieldset>
-            </form>
-          </div>
+    return (
+        <div className="settings-page">
+            <div className="container page">
+                <div className="row">
+                    <div className="col-md-6 offset-md-3 col-xs-12">
+                        <h1 className="text-xs-center">Your Settings</h1>
+                        <ErrorList errors={errors} />
+                        <form onSubmit={handleSubmit}>
+                            <FormInput
+                                type="url"
+                                value={user.image}
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                                name="image"
+                                placeholder="URL of profile picture"
+                            />
+                            <FormInput
+                                value={user.username}
+                                type="text"
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                                name="username"
+                                classes="form-control-lg"
+                                placeholder="Your Name"
+                            />
+                            <FormTextArea
+                                value={user.bio}
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                                name="bio"
+                                classes="form-control-lg"
+                                placeholder="Short bio about you"
+                            />
+                            <FormInput
+                                value={user.email}
+                                type="email"
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                                name="email"
+                                classes="form-control-lg"
+                                placeholder="Email"
+                            />
+                            <FormInput
+                                type="password"
+                                handleBlur={handleBlur}
+                                handleChange={handleChange}
+                                name="password"
+                                classes="form-control-lg"
+                                placeholder="Password"
+                            />
+                            <button disabled={!isSubmitting} className="btn btn-lg btn-primary pull-xs-right">
+                                Update Settings
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-export default Setting;
+const mapStateToProps = (state: { user: User }) => {
+    return { user: state.user };
+};
+
+export default connect(mapStateToProps)(Setting);

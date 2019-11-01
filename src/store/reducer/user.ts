@@ -1,5 +1,5 @@
-import User from "../../model/User";
-import Action from "../../model/Action";
+import User from "../../model/IUser";
+import Action from "../../model/IAction";
 
 const initial: User = {
   username: "jake",

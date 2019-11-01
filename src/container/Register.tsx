@@ -1,11 +1,24 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import ErrorList from "../components/ErrorList";
+import useForm from "../hook/useForm";
+import registerValidator from "../validator/register";
+import IRegisterForm from "../model/IRegisterForm";
+import FormInput from "../components/other/FormInput";
 
 export interface RegisterProps {}
 
 const Register: React.FunctionComponent<RegisterProps> = () => {
-  const [errors] = React.useState<string[]>([]);
+  const {
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isSubmitting
+  } = useForm<IRegisterForm>(
+    { email: "", password: "", username: "" },
+    registerValidator
+  );
 
   return (
     <div className="auth-page">
@@ -16,36 +29,44 @@ const Register: React.FunctionComponent<RegisterProps> = () => {
             <p className="text-xs-center">
               <Link to="/login">Have an account?</Link>
             </p>
-
-            {() => {
-              if (errors) {
-                return <ErrorList errors={errors} />;
-              }
-            }}
-
-            <form>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="text"
-                  placeholder="Your Name"
-                />
-              </fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="text"
-                  placeholder="Email"
-                />
-              </fieldset>
-              <fieldset className="form-group">
-                <input
-                  className="form-control form-control-lg"
-                  type="password"
-                  placeholder="Password"
-                />
-              </fieldset>
-              <button className="btn btn-lg btn-primary pull-xs-right">
+            <ErrorList errors={errors} />
+            <form onSubmit={handleSubmit}>
+              <FormInput
+                name="username"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Your Name"
+                classes="form-control-lg"
+              />
+              <FormInput
+                type="password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Password"
+                classes="form-control-lg"
+              />
+              <FormInput
+                name="email"
+                type="email"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Email"
+                classes="form-control-lg"
+              />
+              <FormInput
+                type="password"
+                name="password"
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                placeholder="Password"
+                classes="form-control-lg"
+              />
+              <button
+                disabled={!isSubmitting}
+                type="submit"
+                className="btn btn-lg btn-primary pull-xs-right"
+              >
                 Sign up
               </button>
             </form>

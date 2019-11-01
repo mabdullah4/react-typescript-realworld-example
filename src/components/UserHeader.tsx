@@ -1,5 +1,5 @@
 import * as React from "react";
-import User from "../model/User";
+import User from "../model/IUser";
 
 export interface UserHeaderProps {
   user: User;

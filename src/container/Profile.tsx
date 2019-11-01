@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, Switch, Route, useRouteMatch } from "react-router-dom";
 import { connect } from "react-redux";
 
-import User from "../model/User";
+import User from "../model/IUser";
 
 import ArticleList from "../components/Article/ArticleList";
 import UserHeader from "../components/UserHeader";
