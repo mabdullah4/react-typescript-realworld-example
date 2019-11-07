@@ -1,42 +1,27 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const useForm = <T>(initialValues: T, validator: Function) => {
-  const [values, setValues] = useState<T>(initialValues);
-  const [errors, setErrors] = useState<T>();
-  const [isSubmitting, setSubmitting] = useState(false);
+    const [values, setValues] = useState<T>(initialValues);
+    const [errors, setErrors] = useState<T>();
+    const [isSubmitting, setSubmitting] = useState(false);
 
-  const validate = () => {
-    const validationErrors = validator(values);
-    setErrors(validationErrors);
+    useEffect(() => {
+        let noErrors = errors && Object.values(errors).findIndex(ele => ele !== null) === -1;
+        setSubmitting(!!noErrors);
+    }, [errors]);
 
-    if (Object.keys(validationErrors).length !== 0) {
-      setSubmitting(false);
-    } else {
-      setSubmitting(true);
-    }
-  };
+    const validate = () => setErrors(validator(values));
+    const handleBlur = (e: any) => validate();
+    const handleChange = (e: any) => setValues({ ...values, [e.target.name]: e.target.value });
+    const handleSubmit = (e: any) => validate();
 
-  const handleBlur = <BlurEvent>(e: BlurEvent) => validate();
-
-  const handleChange = (e: any) =>
-    setValues({ ...values, [e.target.name]: e.target.value });
-
-  const handleSubmit = (e: any) => {
-    validate();
-    if (!isSubmitting) {
-      console.log(errors);
-    } else {
-      console.log(values);
-    }
-  };
-
-  return {
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    errors,
-    isSubmitting
-  };
+    return {
+        handleBlur,
+        handleChange,
+        handleSubmit,
+        errors,
+        isSubmitting
+    };
 };
 
 export default useForm;

@@ -11,7 +11,7 @@ export interface ProfileProps {
     user: User;
 }
 
-const Profile: React.SFC<ProfileProps> = ({ user }) => {
+const Profile: React.FunctionComponent<ProfileProps> = ({ user }) => {
     const match = useRouteMatch<{ path: string }>();
     let path = "/profile/:user/";
     if (match) path = match.path;

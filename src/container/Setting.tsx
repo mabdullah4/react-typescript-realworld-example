@@ -11,7 +11,7 @@ export interface SettingProps {
     user: User;
 }
 
-const Setting: React.SFC<SettingProps> = ({ user }) => {
+const Setting: React.FunctionComponent<SettingProps> = ({ user }) => {
     const { errors, handleSubmit, handleBlur, handleChange, isSubmitting } = useForm<User>(user, userValidator);
 
     return (

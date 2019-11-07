@@ -2,15 +2,15 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 
 export interface TagProps {
-  tag: string;
+    tag: string;
 }
 
-const Tag: React.SFC<TagProps> = ({ tag }) => {
-  return (
-    <Link to="tags" className="tag-pill tag-default">
-      {tag}
-    </Link>
-  );
+const Tag: React.FunctionComponent<TagProps> = ({ tag }) => {
+    return (
+        <Link to="tags" className="tag-pill tag-default">
+            {tag}
+        </Link>
+    );
 };
 
 export default Tag;
