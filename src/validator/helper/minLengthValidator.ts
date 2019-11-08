@@ -1,8 +1,6 @@
 import { MIN_LENGTH } from "../../constant/constant";
 
-export default function minLengthValidator(value: string, errorMsg: string, length: number = MIN_LENGTH): string {
-    if (value.length < length) {
-        return errorMsg;
-    }
-    return "";
+function minLengthValidator(value: string, errorMsg: string, length: number = MIN_LENGTH): string {
+    return value.length <= length ? errorMsg : "";
 }
+export default minLengthValidator;

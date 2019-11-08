@@ -24,7 +24,7 @@ const FeedTabs: React.FunctionComponent<FeedTabsProps> = ({ user }) => {
                     return "";
                 })()}
                 <li className="nav-item">
-                    <NavLink activeClassName="active" className="nav-link" to="/feed">
+                    <NavLink exact activeClassName="active" className="nav-link" to="">
                         Global Feed
                     </NavLink>
                 </li>

@@ -16,7 +16,7 @@ const Home: React.FunctionComponent<HomeProps> = () => {
                     <div className="col-md-9">
                         <FeedTabs />
                         <Switch>
-                            <Route path="/feed" component={ArticleList} />
+                            <Route exact path="" component={ArticleList} />
                             <Route path="/:user/feed" component={ArticleList} />
                         </Switch>
                     </div>

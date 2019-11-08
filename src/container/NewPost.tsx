@@ -10,7 +10,7 @@ export interface NewPostProps {}
 
 const NewPost: React.FunctionComponent<NewPostProps> = () => {
     const { errors, handleChange, handleSubmit, handleBlur, isSubmitting } = useForm<INewPost>(
-        { intro: "", text: "", title: "", tags: [] },
+        { intro: "", text: "", title: "", tag: "" },
         postValidator
     );
 
@@ -36,15 +36,12 @@ const NewPost: React.FunctionComponent<NewPostProps> = () => {
                                     handleBlur={handleBlur}
                                 />
                                 <FormTextArea
-                                    name="article"
+                                    name="text"
                                     placeholder="Write your article (in markdown)"
                                     handleBlur={handleBlur}
                                     handleChange={handleChange}
                                 />
-                                <fieldset className="form-group">
-                                    <input type="text" className="form-control" placeholder="Enter tags" />
-                                    <div className="tag-list"></div>
-                                </fieldset>
+                                <FormInput name="tag" placeholder="Enter tags" handleChange={handleChange} handleBlur={handleBlur} />
                                 <button className="btn btn-lg pull-xs-right btn-primary" type="submit" disabled={!isSubmitting}>
                                     Publish Article
                                 </button>
