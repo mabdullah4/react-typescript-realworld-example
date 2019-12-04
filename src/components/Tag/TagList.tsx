@@ -1,10 +1,10 @@
 import * as React from "react";
 import Tag from "./Tag";
 import { connect } from "react-redux";
-import Tags from "../../model/ITag";
+import ITags from "../../model/ITag";
 
 export interface TagListProps {
-    tags: Tags;
+    tags: ITags;
 }
 
 const TagList: React.FunctionComponent<TagListProps> = ({ tags }) => {
@@ -17,7 +17,7 @@ const TagList: React.FunctionComponent<TagListProps> = ({ tags }) => {
     );
 };
 
-const mapStateToProps = (state: { tags: Tags }) => {
+const mapStateToProps = (state: { tags: ITags }) => {
     return { tags: state.tags };
 };
 

@@ -8,6 +8,8 @@ import Login from "./container/Login";
 import Setting from "./container/Setting";
 import NewPost from "./container/NewPost";
 import Profile from "./container/Profile";
+import auth from "./store/reducer/auth";
+import ProtectedRoute from "./ProtectedRoutes";
 
 const App: React.FunctionComponent = () => {
     return (
@@ -16,8 +18,10 @@ const App: React.FunctionComponent = () => {
             <Switch>
                 <Route path="/login" component={Login} />
                 <Route path="/register" component={Register} />
-                <Route path="/setting" component={Setting} />
-                <Route path="/new-post" component={NewPost} />
+                <ProtectedRoute>
+                    <Route path="/setting" component={Setting} />
+                    <Route path="/new-post" component={NewPost} />
+                </ProtectedRoute>
                 <Route path="/profile/:user/" component={Profile} />
                 <Route path="/" component={Home} />
             </Switch>

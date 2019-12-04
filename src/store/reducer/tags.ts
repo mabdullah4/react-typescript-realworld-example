@@ -1,15 +1,15 @@
-import Tags from "../../model/ITag";
-import Action from "../../model/IAction";
+import ITags from "../../model/ITag";
+import IAction from "../../model/IAction";
 
-const initial: Tags = {
-  tags: ["reactjs", "angularjs"]
+const initial: ITags = {
+    tags: ["reactjs", "angularjs"]
 };
 
-const tags = (state: Tags = initial, action: Action) => {
-  switch (action.type) {
-    default:
-      return state;
-  }
+const tags = (state: ITags = initial, action: IAction) => {
+    switch (action.type) {
+        default:
+            return state;
+    }
 };
 
 export default tags;

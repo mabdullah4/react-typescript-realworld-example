@@ -1,8 +1,8 @@
 import * as React from "react";
-import User from "../model/IUser";
+import IUser from "../model/IUser";
 
 export interface UserHeaderProps {
-    user: User;
+    user: IUser;
 }
 
 const UserHeader: React.FunctionComponent<UserHeaderProps> = ({ user }) => {

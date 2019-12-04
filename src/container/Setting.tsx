@@ -1,18 +1,18 @@
 import * as React from "react";
 import FormInput from "../components/other/FormInput";
 import useForm from "../hook/useForm";
-import User from "../model/IUser";
+import IUser from "../model/IUser";
 import { connect } from "react-redux";
 import userValidator from "../validator/user";
 import FormTextArea from "../components/other/FormTextArea";
 import ErrorList from "../components/ErrorList";
 
 export interface SettingProps {
-    user: User;
+    user: IUser;
 }
 
 const Setting: React.FunctionComponent<SettingProps> = ({ user }) => {
-    const { errors, handleSubmit, handleBlur, handleChange, isSubmitting } = useForm<User>(user, userValidator);
+    const { errors, handleSubmit, handleBlur, handleChange, isSubmitting } = useForm<IUser>(user, userValidator);
 
     return (
         <div className="settings-page">
@@ -75,7 +75,7 @@ const Setting: React.FunctionComponent<SettingProps> = ({ user }) => {
     );
 };
 
-const mapStateToProps = (state: { user: User }) => {
+const mapStateToProps = (state: { user: IUser }) => {
     return { user: state.user };
 };
 

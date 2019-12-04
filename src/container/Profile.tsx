@@ -2,13 +2,13 @@ import * as React from "react";
 import { Switch, Route, useRouteMatch, NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 
-import User from "../model/IUser";
+import IUser from "../model/IUser";
 
 import ArticleList from "../components/Article/ArticleList";
 import UserHeader from "../components/UserHeader";
 
 export interface ProfileProps {
-    user: User;
+    user: IUser;
 }
 
 const Profile: React.FunctionComponent<ProfileProps> = ({ user }) => {
@@ -51,7 +51,7 @@ const Profile: React.FunctionComponent<ProfileProps> = ({ user }) => {
     );
 };
 
-const mapStateToProps = (state: { user: User }) => {
+const mapStateToProps = (state: { user: IUser }) => {
     return { user: state.user };
 };
 

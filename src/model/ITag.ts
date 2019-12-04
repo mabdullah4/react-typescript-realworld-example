@@ -1,3 +1,3 @@
-export default interface Tags {
-  tags: string[];
+export default interface ITags {
+    tags: string[];
 }
