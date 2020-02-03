@@ -1,3 +1,2 @@
-export default interface Tags {
-  tags: string[];
-}
+type Tags = string[];
+export default Tags;
